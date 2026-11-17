@@ -290,7 +290,7 @@ a { color: inherit; }
 .contact-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-top: 2rem; }
 
 /* Footer */
-.site-footer { background: var(--ink); border-top: 1px solid var(--line-dark); padding: 1.6rem 0; }
+.site-footer { background: var(--ink); border-top: 1px solid var(--line-dark); padding: 1.6rem 0 4.2rem; }
 .footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: #8b96a5; font-size: 0.9rem; }
 .footer-inner a { color: #c7d3e2; text-decoration: none; }
 .footer-inner a:hover { text-decoration: underline; }
@@ -362,16 +362,17 @@ a { color: inherit; }
 .marquee-item { display: inline-flex; align-items: center; gap: 1.6rem; }
 
 /* ---------- Sakuga VFX: progress scroll + tombol + tooltip + toast ---------- */
-/* Progress scroll: bar Sakuga (awan badai + burst di 100%) di bawah header.
-   Elemen tetap di DOM tapi transparan sampai halaman mulai di-scroll. */
+/* Progress scroll: bar Sakuga (awan badai + burst di 100%) menempel di BAWAH
+   viewport ala HUD game — di atas ia menutupi header + judul section saat
+   di-scroll. Elemen tetap di DOM tapi transparan sampai halaman mulai di-scroll. */
 sakuga-progress.scroll-progress-sakuga {
-  position: fixed; top: 64px; left: 0; right: 0; z-index: 55;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 55;
   --sk-progress-width: 100%;
   opacity: 0; transition: opacity 0.35s ease;
   pointer-events: none;
 }
 sakuga-progress.scroll-progress-sakuga.live { opacity: 1; }
-/* Bar menempel tepat di bawah header: tanpa padding awan di dalam elemen
+/* Bar menempel di bawah viewport: tanpa padding awan di dalam elemen
    (awan digambar di canvas depan, tetap terlihat di atas bar). Label % disembunyikan. */
 sakuga-progress.scroll-progress-sakuga::part(progress) { padding-top: 0; }
 sakuga-progress.scroll-progress-sakuga::part(label) { display: none; }
@@ -382,7 +383,7 @@ sakuga-button:not([variant="secondary"])::part(button) {
 }
 /* Tooltip Sakuga di samping judul grup skill: host harus jadi containing block
    gelembungnya + margin-top bawaan library (60px) harus dimatikan di konteks ini. */
-.skill-group h3 { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; }
+.skill-group h3 { display: flex; align-items: center; gap: 0.55rem; flex-wrap: nowrap; }
 .skill-group h3 sakuga-tooltip { position: relative; display: inline-block; vertical-align: middle; margin-top: 0; }
 
 /* ---------- Anime.js: hero grid + huruf (progress bar lama sudah diganti Sakuga) ---------- */

@@ -420,19 +420,22 @@ export default function Home() {
     window.open(url, "_blank", "noopener");
   };
   const downloadCV = (e: React.MouseEvent<SakugaButtonElement>) => {
+    const btn = e.currentTarget;
     const a = document.createElement("a");
     a.href = "/CV-Rangga-Figo-Hidayat.pdf";
     a.download = "CV-Rangga-Figo-Hidayat.pdf";
     document.body.appendChild(a);
     a.click();
     a.remove();
-    e.currentTarget.done();
+    if (typeof btn.done === "function") btn.done();
   };
   const sendEmail = (e: React.MouseEvent<SakugaButtonElement>) => {
+    const btn = e.currentTarget;
     window.location.href = "mailto:ranggadanceyong@gmail.com";
-    e.currentTarget.done();
+    if (typeof btn.done === "function") btn.done();
   };
   const copyEmail = async (e: React.MouseEvent<SakugaButtonElement>) => {
+    const btn = e.currentTarget;
     const email = "ranggadanceyong@gmail.com";
     try {
       await navigator.clipboard.writeText(email);
@@ -445,7 +448,7 @@ export default function Home() {
       ta.remove();
     }
     toastRef.current?.show("Email disalin!");
-    e.currentTarget.done();
+    if (typeof btn.done === "function") btn.done();
   };
 
   return (
@@ -729,7 +732,7 @@ export default function Home() {
       </footer>
 
       {/* Sakuga toast: umpan balik aksi (mis. salin email) — pojok kiri bawah */}
-      <sakuga-toast ref={toastRef} style={{ position: "fixed", left: 24, bottom: 24, zIndex: 100 }} />
+      <sakuga-toast ref={toastRef} style={{ position: "fixed", left: 24, bottom: 84, zIndex: 100 }} />
     </>
   );
 }
